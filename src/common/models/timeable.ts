@@ -13,7 +13,7 @@ export abstract class Timeable extends BaseEntity {
     default: ' ',
     isArray: false,
     name: 'createdAt',
-    description: 'createdAt of the entity',
+    description: 'created date of the entity',
   })
   @CreateDateColumn()
   public createdAt: Date;
@@ -24,7 +24,7 @@ export abstract class Timeable extends BaseEntity {
     default: ' ',
     isArray: false,
     name: 'updatedAt',
-    description: 'updatedAt of the entity',
+    description: 'updated date of the entity',
   })
   @UpdateDateColumn()
   public updatedAt: Date;
@@ -35,7 +35,7 @@ export abstract class Timeable extends BaseEntity {
     default: ' ',
     isArray: false,
     name: 'deletedAt',
-    description: 'deletedAt of the entity',
+    description: 'soft deleted date of the entity',
   })
   @DeleteDateColumn()
   public deletedAt: Date;
