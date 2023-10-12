@@ -1,15 +1,7 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { LeaseCreateDto } from 'src/modules/lease/dto/create.dto';
-import { PropertyTypeEnum } from '../constants/appartment-type.enum';
-import { Property } from './property.entity';
 import { LeaseTypeEnum } from '../constants/lease-type.enum';
 import { Unit } from './unit.entity';
 import { Tenant } from './tenant.entity';

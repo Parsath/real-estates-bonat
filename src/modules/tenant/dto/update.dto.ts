@@ -7,18 +7,18 @@ export class TenantUpdateDto extends PartialType(TenantCreateDto) {
   @ApiProperty(TenantApiPropConfig.email)
   @IsOptional()
   @IsString()
-  readonly email: string;
+  readonly email?: string;
 
   @ApiProperty(TenantApiPropConfig.firstName)
   @IsOptional()
-  readonly firstName: string;
+  readonly firstName?: string;
 
   @ApiProperty(TenantApiPropConfig.lastName)
   @IsOptional()
-  readonly lastName: string;
+  readonly lastName?: string;
 
   @ApiProperty(TenantApiPropConfig.phone)
   @IsOptional()
   @IsString()
-  readonly phone: string;
+  readonly phone?: string;
 }

@@ -10,11 +10,24 @@ export class Property extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @ApiProperty(PropertyApiPropConfig.location)
+  @ApiProperty({
+    required: true,
+    type: 'location',
+    description: 'location of the property',
+    default: ' ',
+    isArray: false,
+    name: 'location',
+  })
   @Column({ nullable: false })
   public location: string;
 
-  @ApiProperty(PropertyApiPropConfig.units)
+  @ApiProperty({
+    type: () => Unit,
+    isArray: true,
+    default: [],
+    description:
+      'Types of properties (or units) to which the property is associated',
+  })
   @OneToMany(() => Unit, (unit) => unit.property, {
     onDelete: 'SET NULL',
   })
