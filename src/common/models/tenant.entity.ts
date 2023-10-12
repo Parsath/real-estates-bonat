@@ -1,11 +1,4 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  TableInheritance,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { TenantCreateDto } from 'src/modules/tenant/dto/create.dto';
@@ -21,7 +14,7 @@ export class Tenant extends Timeable {
     default: ' ',
     isArray: false,
     name: 'firstName',
-    description: 'firstName of the user',
+    description: 'firstName of the tenant',
   })
   @Column({ nullable: false, unique: false })
   public firstName: string;
@@ -32,7 +25,7 @@ export class Tenant extends Timeable {
     default: ' ',
     isArray: false,
     name: 'lastName',
-    description: 'lastName of the user',
+    description: 'lastName of the tenant',
   })
   @Column({ nullable: false, unique: false })
   public lastName: string;
@@ -43,7 +36,7 @@ export class Tenant extends Timeable {
     default: ' ',
     isArray: false,
     name: 'phone',
-    description: 'phone number of the user',
+    description: 'phone number of the tenant',
   })
   @Column({ nullable: false, unique: true })
   public phone: string;
@@ -53,7 +46,7 @@ export class Tenant extends Timeable {
     required: true,
     default: ' ',
     isArray: false,
-    description: 'email of the user',
+    description: 'email of the tenant',
   })
   @Column({ nullable: false, unique: true })
   public email: string;

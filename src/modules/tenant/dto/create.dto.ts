@@ -11,7 +11,7 @@ export class TenantCreateDto {
   })
   @IsNotEmpty()
   @IsString()
-  public email: string;
+  readonly email: string;
 
   @ApiProperty({
     required: true,
@@ -22,7 +22,7 @@ export class TenantCreateDto {
     name: 'firstName',
   })
   @IsNotEmpty()
-  public firstName: string;
+  readonly firstName: string;
 
   @ApiProperty({
     required: true,
@@ -33,7 +33,7 @@ export class TenantCreateDto {
     name: 'lastName',
   })
   @IsNotEmpty()
-  public lastName: string;
+  readonly lastName: string;
 
   @ApiProperty({
     required: true,
@@ -45,5 +45,5 @@ export class TenantCreateDto {
   })
   @IsNotEmpty()
   @IsString()
-  public phone: string;
+  readonly phone: string;
 }
