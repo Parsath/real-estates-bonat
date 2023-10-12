@@ -3,30 +3,18 @@ import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { PropertyCreateDto } from 'src/modules/property/dto/create.dto';
 import { Unit } from './unit.entity';
+import { PropertyApiPropConfig } from 'src/modules/property/utils/swagger';
 
 @Entity()
 export class Property extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @ApiProperty({
-    type: 'string',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'location',
-    description: 'location of the property',
-  })
+  @ApiProperty(PropertyApiPropConfig.location)
   @Column({ nullable: false })
   public location: string;
 
-  @ApiProperty({
-    type: () => Unit,
-    isArray: true,
-    default: [],
-    description:
-      'Types of properties (or units) to which the property is associated',
-  })
+  @ApiProperty(PropertyApiPropConfig.units)
   @OneToMany(() => Unit, (unit) => unit.property, {
     onDelete: 'SET NULL',
   })

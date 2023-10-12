@@ -7,51 +7,24 @@ import {
   IsOptional,
 } from 'class-validator';
 import { PropertyTypeEnum } from 'src/common/constants/appartment-type.enum';
+import { UnitApiPropConfig } from '../utils/swagger';
 export class UnitCreateDto {
-  @ApiProperty({
-    required: true,
-    type: 'enum',
-    description: 'type of the property',
-    default: ' ',
-    isArray: false,
-    name: 'type',
-  })
+  @ApiProperty(UnitApiPropConfig.type)
   @IsNotEmpty()
   @IsEnum(PropertyTypeEnum)
   readonly type: PropertyTypeEnum;
 
-  @ApiProperty({
-    required: true,
-    type: 'number',
-    description: 'price per square meter of the property',
-    default: ' ',
-    isArray: false,
-    name: 'pricePerSquareMeter',
-  })
+  @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
   @IsNumber()
   @IsNotEmpty()
   readonly pricePerSquareMeter: number;
 
-  @ApiProperty({
-    required: true,
-    type: 'number',
-    description: 'number of rooms of the property',
-    default: ' ',
-    isArray: false,
-    name: 'numberOfRooms',
-  })
+  @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @IsNumber()
   @IsNotEmpty()
   readonly numberOfRooms: number;
 
-  @ApiProperty({
-    required: false,
-    type: 'boolean',
-    description: 'availability of the property',
-    default: ' ',
-    isArray: false,
-    name: 'isAvailable',
-  })
+  @ApiProperty(UnitApiPropConfig.isAvailable)
   @IsBoolean()
   @IsOptional()
   readonly isAvailable: boolean = true;

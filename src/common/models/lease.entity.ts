@@ -13,63 +13,32 @@ import { Property } from './property.entity';
 import { LeaseTypeEnum } from '../constants/lease-type.enum';
 import { Unit } from './unit.entity';
 import { Tenant } from './tenant.entity';
+import { LeaseApiPropConfig } from 'src/modules/lease/utils/swagger';
 
 @Entity()
 export class Lease extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @ApiProperty({
-    type: 'date',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'startDate',
-    description: 'start date of the lease',
-  })
+  @ApiProperty(LeaseApiPropConfig.startDate)
   @Column({ nullable: false })
   public startDate: Date;
 
-  @ApiProperty({
-    type: 'date',
-    required: false,
-    default: ' ',
-    isArray: false,
-    name: 'endDate',
-    description: 'end date of the lease',
-  })
+  @ApiProperty(LeaseApiPropConfig.endDate)
   @Column({ nullable: true })
   public endDate: Date;
 
-  @ApiProperty({
-    type: 'enum',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'type',
-    description:
-      'type of the lease (wheither it is a lease with a defined end date or a lease with an open end date)',
-  })
+  @ApiProperty(LeaseApiPropConfig.type)
   @Column({ type: 'enum', enum: LeaseTypeEnum })
   public type: LeaseTypeEnum;
 
-  @ApiProperty({
-    type: () => Unit,
-    isArray: false,
-    default: [],
-    description: 'Property to which the lease is associated',
-  })
+  @ApiProperty(LeaseApiPropConfig.unit)
   @ManyToOne(() => Unit, (unit) => unit.leases, {
     onDelete: 'SET NULL',
   })
   public unit: Unit;
 
-  @ApiProperty({
-    type: () => Unit,
-    isArray: false,
-    default: [],
-    description: 'Tenant to which the lease is associated',
-  })
+  @ApiProperty(LeaseApiPropConfig.tenant)
   @ManyToOne(() => Tenant, (tenant) => tenant.leases, {
     onDelete: 'SET NULL',
   })

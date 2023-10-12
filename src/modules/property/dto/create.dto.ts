@@ -8,27 +8,14 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { UnitCreateDto } from 'src/modules/unit/dto/create.dto';
+import { PropertyApiPropConfig } from '../utils/swagger';
 export class PropertyCreateDto {
-  @ApiProperty({
-    required: true,
-    type: 'location',
-    description: 'location of the property',
-    default: ' ',
-    isArray: false,
-    name: 'location',
-  })
+  @ApiProperty(PropertyApiPropConfig.location)
   @IsNotEmpty()
   @IsString()
   readonly location: string;
 
-  @ApiProperty({
-    required: true,
-    type: () => UnitCreateDto,
-    description: 'units of the property',
-    default: ' ',
-    isArray: true,
-    name: 'units',
-  })
+  @ApiProperty(PropertyApiPropConfig.unitsDto)
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })

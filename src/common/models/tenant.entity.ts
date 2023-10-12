@@ -3,55 +3,30 @@ import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { TenantCreateDto } from 'src/modules/tenant/dto/create.dto';
 import { Lease } from './lease.entity';
+import { TenantApiPropConfig } from 'src/modules/tenant/utils/swagger';
 
 @Entity()
 export class Tenant extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @ApiProperty({
-    type: 'string',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'firstName',
-    description: 'firstName of the tenant',
-  })
+  @ApiProperty(TenantApiPropConfig.firstName)
   @Column({ nullable: false })
   public firstName: string;
 
-  @ApiProperty({
-    type: 'string',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'lastName',
-    description: 'lastName of the tenant',
-  })
+  @ApiProperty(TenantApiPropConfig.lastName)
   @Column({ nullable: false })
   public lastName: string;
 
-  @ApiProperty({
-    type: 'string',
-    required: false,
-    default: ' ',
-    isArray: false,
-    name: 'phone',
-    description: 'phone number of the tenant',
-  })
+  @ApiProperty(TenantApiPropConfig.phone)
   @Column({ nullable: false, unique: true })
   public phone: string;
 
-  @ApiProperty({
-    type: 'email',
-    required: true,
-    default: ' ',
-    isArray: false,
-    description: 'email of the tenant',
-  })
+  @ApiProperty(TenantApiPropConfig.email)
   @Column({ nullable: false, unique: true })
   public email: string;
 
+  @ApiProperty(TenantApiPropConfig.leases)
   @OneToMany(() => Lease, (lease) => lease.tenant, {
     onDelete: 'SET NULL',
   })
