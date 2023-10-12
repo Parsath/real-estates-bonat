@@ -9,7 +9,7 @@ import { postgresConfig } from './configuration';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: () => postgresConfig,
+      useFactory: () => postgresConfig(),
     }),
   ],
   providers: [ConfigService, PostgresConfigService],

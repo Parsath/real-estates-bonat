@@ -1,11 +1,19 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TenantModule } from './tenant/tenant.module';
+import { TenantModule } from './modules/tenant/tenant.module';
+import { PostgresConfigModule } from './config/database/postgres/config.module';
+import { AppConfigModule } from './config/app/config.module';
+import { ConfigModule } from '@nestjs/config';
+
+const _Modules = [
+  ConfigModule.forRoot({ isGlobal: true }),
+  AppConfigModule,
+  PostgresConfigModule,
+  TenantModule,
+];
 
 @Module({
-  imports: [TenantModule],
+  imports: [..._Modules],
   controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

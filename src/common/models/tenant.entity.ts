@@ -10,23 +10,56 @@ export class Tenant extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
 
-  @ApiProperty(TenantApiPropConfig.firstName)
+  @ApiProperty({
+    required: true,
+    type: 'string',
+    description: 'firstName of the tenant',
+    default: ' ',
+    isArray: false,
+    name: 'firstName',
+  })
   @Column({ nullable: false })
   public firstName: string;
 
-  @ApiProperty(TenantApiPropConfig.lastName)
+  @ApiProperty({
+    required: true,
+    type: 'string',
+    description: 'lastName of the tenant',
+    default: ' ',
+    isArray: false,
+    name: 'lastName',
+  })
   @Column({ nullable: false })
   public lastName: string;
 
-  @ApiProperty(TenantApiPropConfig.phone)
+  @ApiProperty({
+    required: true,
+    type: 'string',
+    description: 'phone of the tenant',
+    default: ' ',
+    isArray: false,
+    name: 'phone',
+  })
   @Column({ nullable: false, unique: true })
   public phone: string;
 
-  @ApiProperty(TenantApiPropConfig.email)
+  @ApiProperty({
+    required: true,
+    type: 'email',
+    description: 'email of the tenant',
+    default: ' ',
+    isArray: false,
+    name: 'email',
+  })
   @Column({ nullable: false, unique: true })
   public email: string;
 
-  @ApiProperty(TenantApiPropConfig.leases)
+  @ApiProperty({
+    type: () => Lease,
+    isArray: true,
+    default: [],
+    description: 'Leases of the tenant',
+  })
   @OneToMany(() => Lease, (lease) => lease.tenant, {
     onDelete: 'SET NULL',
   })
