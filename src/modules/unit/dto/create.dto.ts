@@ -5,6 +5,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsOptional,
+  IsString,
 } from 'class-validator';
 import { PropertyTypeEnum } from 'src/common/constants/appartment-type.enum';
 import { UnitApiPropConfig } from '../utils/swagger';
@@ -28,4 +29,9 @@ export class UnitCreateDto {
   @IsBoolean()
   @IsOptional()
   readonly isAvailable: boolean = true;
+
+  @ApiProperty(UnitApiPropConfig.propertyId)
+  @IsNotEmpty()
+  @IsString()
+  readonly propertyId: string;
 }
