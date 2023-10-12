@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  real-estates-pg-db:
+    image: postgres:12-alpine
+    restart: always
+    container_name: real-estates-pg-db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_DB: '${DB_NAME}'
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - '${DB_PORT}:${DB_PORT}'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - real-estates-network
+
+  real-estates-pg-admin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: real-estates-pg-admin
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: '${PGADMIN_DEFAULT_EMAIL}'
+      PGADMIN_DEFAULT_PASSWORD: '${PGADMIN_DEFAULT_PASSWORD}'
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - '${PGADMIN_PORT}:80'
+    depends_on:
+      - real-estates-pg-db
+    networks:
+      - real-estates-network
+
+volumes:
+  pgdata:
+  pgadmin:
+
+networks:
+  real-estates-network:
+    driver: bridge
