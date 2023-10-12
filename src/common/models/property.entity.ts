@@ -15,11 +15,18 @@ export class Property extends Timeable {
     default: ' ',
     isArray: false,
     name: 'location',
-    description: 'location of the user',
+    description: 'location of the property',
   })
-  @Column({ nullable: false, unique: false })
+  @Column({ nullable: false })
   public location: string;
 
+  @ApiProperty({
+    type: () => Unit,
+    isArray: true,
+    default: [],
+    description:
+      'Types of properties (or units) to which the property is associated',
+  })
   @OneToMany(() => Unit, (unit) => unit.property, {
     onDelete: 'SET NULL',
   })

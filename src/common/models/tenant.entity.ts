@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { TenantCreateDto } from 'src/modules/tenant/dto/create.dto';
+import { Lease } from './lease.entity';
 
 @Entity()
 export class Tenant extends Timeable {
@@ -16,7 +17,7 @@ export class Tenant extends Timeable {
     name: 'firstName',
     description: 'firstName of the tenant',
   })
-  @Column({ nullable: false, unique: false })
+  @Column({ nullable: false })
   public firstName: string;
 
   @ApiProperty({
@@ -27,7 +28,7 @@ export class Tenant extends Timeable {
     name: 'lastName',
     description: 'lastName of the tenant',
   })
-  @Column({ nullable: false, unique: false })
+  @Column({ nullable: false })
   public lastName: string;
 
   @ApiProperty({
@@ -51,10 +52,10 @@ export class Tenant extends Timeable {
   @Column({ nullable: false, unique: true })
   public email: string;
 
-  //   @OneToMany(() => Lease, (lease) => lease.adherent, {
-  //     onDelete: 'SET NULL',
-  //   })
-  //   public lease: Lease[];
+  @OneToMany(() => Lease, (lease) => lease.tenant, {
+    onDelete: 'SET NULL',
+  })
+  public leases: Lease[];
 
   constructor(entity?: TenantCreateDto | Tenant) {
     super();

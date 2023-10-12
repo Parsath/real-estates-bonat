@@ -1,25 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { UnitCreateDto } from 'src/modules/unit/dto/create.dto';
 import { PropertyTypeEnum } from '../constants/appartment-type.enum';
 import { Property } from './property.entity';
+import { Lease } from './lease.entity';
 
 @Entity()
 export class Unit extends Timeable {
   @PrimaryGeneratedColumn('uuid')
   public id: string;
-
-  @ApiProperty({
-    type: 'string',
-    required: true,
-    default: ' ',
-    isArray: false,
-    name: 'location',
-    description: 'location of the user',
-  })
-  @Column({ nullable: false, unique: false })
-  public location: string;
 
   @ApiProperty({
     type: 'enum',
@@ -77,6 +73,17 @@ export class Unit extends Timeable {
     onDelete: 'CASCADE',
   })
   public property: Property;
+
+  @ApiProperty({
+    type: () => Lease,
+    isArray: true,
+    default: [],
+    description: 'Leases associated with the unit',
+  })
+  @OneToMany(() => Lease, (lease) => lease.unit, {
+    onDelete: 'SET NULL',
+  })
+  public leases: Lease[];
 
   //   @OneToMany(() => Unit, (unit) => unit.adherent, {
   //     onDelete: 'SET NULL',
