@@ -17,11 +17,6 @@ import { ApiTags } from '@nestjs/swagger';
 export class UnitController {
   constructor(private readonly unitService: UnitService) {}
 
-  @Post()
-  create(@Body() createUnitDto: UnitCreateDto) {
-    return this.unitService.create(createUnitDto);
-  }
-
   @Get()
   findAll() {
     return this.unitService.findAll();
