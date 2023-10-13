@@ -10,8 +10,10 @@ import {
 import { UnitService } from './unit.service';
 import { UnitCreateDto } from './dto/create.dto';
 import { UnitUpdateDto } from './dto/update.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('unit')
+@ApiTags('Unit')
 export class UnitController {
   constructor(private readonly unitService: UnitService) {}
 
