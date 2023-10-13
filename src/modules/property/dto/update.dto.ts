@@ -1,5 +1,4 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { PropertyCreateDto } from './create.dto';
+import { ApiProperty } from '@nestjs/swagger';
 import { PropertyApiPropConfig } from '../utils/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 

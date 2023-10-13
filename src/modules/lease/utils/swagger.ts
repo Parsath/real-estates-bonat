@@ -21,7 +21,7 @@ export const LeaseApiPropConfig = {
   startDate: {
     required: true,
     type: 'string',
-    description: 'start date of the lease (DD/MM/YYYY or DD-MM-YYYY)',
+    description: 'start date of the lease (MM/DD/YYYY or MM-DD-YYYY)',
     default: ' ',
     isArray: false,
     name: 'startDate',
@@ -38,7 +38,7 @@ export const LeaseApiPropConfig = {
   endDate: {
     required: false,
     type: 'string',
-    description: 'end date of the lease (DD/MM/YYYY or DD-MM-YYYY)',
+    description: 'end date of the lease (MM/DD/YYYY or MM-DD-YYYY)',
     default: ' ',
     isArray: false,
     name: 'endDate',

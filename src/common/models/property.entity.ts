@@ -3,7 +3,6 @@ import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { PropertyCreateDto } from 'src/modules/property/dto/create.dto';
 import { Unit } from './unit.entity';
-import { PropertyApiPropConfig } from 'src/modules/property/utils/swagger';
 
 @Entity()
 export class Property extends Timeable {

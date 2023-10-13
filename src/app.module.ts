@@ -6,6 +6,7 @@ import { AppConfigModule } from './config/app/config.module';
 import { ConfigModule } from '@nestjs/config';
 import { PropertyModule } from './modules/property/property.module';
 import { UnitModule } from './modules/unit/unit.module';
+import { LeaseModule } from './modules/lease/lease.module';
 
 const _Modules = [
   ConfigModule.forRoot({ isGlobal: true }),
@@ -14,6 +15,7 @@ const _Modules = [
   TenantModule,
   PropertyModule,
   UnitModule,
+  LeaseModule,
 ];
 
 @Module({
