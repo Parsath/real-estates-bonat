@@ -19,7 +19,7 @@ export class UnitCreateDto {
 
   @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
   @IsNotEmpty()
-  readonly pricePerSquareMeter: bigint;
+  readonly pricePerSquareMeter: number;
 
   @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @IsNumber()
@@ -34,10 +34,10 @@ export class UnitCreateDto {
   @ApiProperty(UnitApiPropConfig.propertyId)
   @IsOptional()
   @IsString()
-  readonly propertyId: string;
+  readonly propertyId?: string;
 
   @ApiProperty(UnitApiPropConfig.property)
   @IsOptional()
   @Type(() => Property)
-  readonly property: Property;
+  readonly property?: Property;
 }

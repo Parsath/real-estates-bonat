@@ -18,7 +18,7 @@ export class UnitUpdateDto extends PartialType(UnitCreateDto) {
 
   @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
   @IsOptional()
-  readonly pricePerSquareMeter?: bigint;
+  readonly pricePerSquareMeter?: number;
 
   @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @IsNumber()

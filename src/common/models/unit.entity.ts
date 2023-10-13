@@ -24,7 +24,7 @@ export class Unit extends Timeable {
 
   @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
   @Column({ type: 'bigint', nullable: false })
-  public pricePerSquareMeter: bigint;
+  public pricePerSquareMeter: number;
 
   @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @Column({ nullable: false })
