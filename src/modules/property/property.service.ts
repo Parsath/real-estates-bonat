@@ -7,6 +7,7 @@ import { PropertyCreateDto } from './dto/create.dto';
 import { PropertyUpdateDto } from './dto/update.dto';
 import { UnitService } from '../unit/unit.service';
 import { throwNotFoundPopupValidationError } from 'src/common/utils/errors.utils';
+import { UnitCreateDto } from '../unit/dto/create.dto';
 
 @Injectable()
 export class PropertyService {
@@ -16,6 +17,16 @@ export class PropertyService {
     @Inject(UnitService)
     private readonly unitService: UnitService,
   ) {}
+
+  public async createUnit({ id }: FindOneParam, payload: UnitCreateDto) {
+    const property = await this.findOne({ id });
+
+    await this.unitService.create({
+      ...payload,
+      property,
+    });
+    return HttpStatus.CREATED;
+  }
 
   public async create(payload: PropertyCreateDto) {
     const property = this.repository.create(payload);
@@ -42,7 +53,7 @@ export class PropertyService {
 
   public async findOne({ id }: FindOneParam) {
     try {
-      return await this.repository.findOne({
+      return await this.repository.findOneOrFail({
         where: { id },
         relations: { units: true },
       });
@@ -54,8 +65,10 @@ export class PropertyService {
   }
 
   public async update({ id }: FindOneParam, payload: PropertyUpdateDto) {
+    const entity = await this.findOne({ id });
+    Object.assign(entity, payload);
     try {
-      await this.repository.update(id, payload);
+      await entity.save();
       return HttpStatus.OK;
     } catch (e) {
       throwNotFoundPopupValidationError({
@@ -65,6 +78,7 @@ export class PropertyService {
   }
 
   public async remove({ id }: FindOneParam) {
+    await this.findOne({ id });
     try {
       await this.repository.delete(id);
       return HttpStatus.OK;

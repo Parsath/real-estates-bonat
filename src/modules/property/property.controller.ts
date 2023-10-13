@@ -11,6 +11,7 @@ import { PropertyService } from './property.service';
 import { PropertyCreateDto } from './dto/create.dto';
 import { PropertyUpdateDto } from './dto/update.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { UnitCreateDto } from '../unit/dto/create.dto';
 
 @Controller('property')
 @ApiTags('Property')
@@ -20,6 +21,11 @@ export class PropertyController {
   @Post()
   create(@Body() payload: PropertyCreateDto) {
     return this.propertyService.create(payload);
+  }
+
+  @Post(':id/unit')
+  createUnit(@Body() payload: UnitCreateDto, @Param('id') id: string) {
+    return this.propertyService.createUnit({ id }, payload);
   }
 
   @Get()
