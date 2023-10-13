@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Put,
@@ -33,8 +32,6 @@ export class TenantController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateTenantDto: TenantUpdateDto) {
-    console.log('param');
-    console.log(id);
     return this.tenantService.update({ id }, updateTenantDto);
   }
 

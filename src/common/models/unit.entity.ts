@@ -8,7 +8,7 @@ import {
 import { Timeable } from './timeable';
 import { ApiProperty } from '@nestjs/swagger';
 import { UnitCreateDto } from 'src/modules/unit/dto/create.dto';
-import { PropertyTypeEnum } from '../constants/appartment-type.enum';
+import { PropertyTypeEnum } from '../constants/property-type.enum';
 import { Property } from './property.entity';
 import { Lease } from './lease.entity';
 import { UnitApiPropConfig } from '../../modules/unit/utils/swagger';
@@ -24,7 +24,7 @@ export class Unit extends Timeable {
 
   @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
   @Column({ type: 'bigint', nullable: false })
-  public pricePerSquareMeter: number;
+  public pricePerSquareMeter: bigint;
 
   @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @Column({ nullable: false })

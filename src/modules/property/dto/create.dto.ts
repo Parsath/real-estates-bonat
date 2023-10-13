@@ -20,5 +20,5 @@ export class PropertyCreateDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => UnitCreateDto)
-  units: UnitCreateDto[];
+  units?: UnitCreateDto[];
 }

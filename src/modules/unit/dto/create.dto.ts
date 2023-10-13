@@ -7,8 +7,10 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { PropertyTypeEnum } from 'src/common/constants/appartment-type.enum';
+import { PropertyTypeEnum } from 'src/common/constants/property-type.enum';
 import { UnitApiPropConfig } from '../utils/swagger';
+import { Property } from 'src/common/models/property.entity';
+import { Type } from 'class-transformer';
 export class UnitCreateDto {
   @ApiProperty(UnitApiPropConfig.type)
   @IsNotEmpty()
@@ -16,9 +18,8 @@ export class UnitCreateDto {
   readonly type: PropertyTypeEnum;
 
   @ApiProperty(UnitApiPropConfig.pricePerSquareMeter)
-  @IsNumber()
   @IsNotEmpty()
-  readonly pricePerSquareMeter: number;
+  readonly pricePerSquareMeter: bigint;
 
   @ApiProperty(UnitApiPropConfig.numberOfRooms)
   @IsNumber()
@@ -31,7 +32,12 @@ export class UnitCreateDto {
   readonly isAvailable: boolean = true;
 
   @ApiProperty(UnitApiPropConfig.propertyId)
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   readonly propertyId: string;
+
+  @ApiProperty(UnitApiPropConfig.property)
+  @IsOptional()
+  @Type(() => Property)
+  readonly property: Property;
 }

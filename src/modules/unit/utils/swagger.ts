@@ -48,7 +48,7 @@ export const UnitApiPropConfig = {
     description: 'Leases associated with the unit',
   },
   propertyId: {
-    required: true,
+    required: false,
     type: 'string',
     description: 'id of the property to be associated to the unit',
     default: ' ',
