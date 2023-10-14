@@ -28,6 +28,16 @@ export class LeaseController {
     return this.leaseService.unleaseUnit({ id });
   }
 
+  @Get('tenant/:id')
+  findTenantLeases(@Param('id') id: string) {
+    return this.leaseService.findTenantLeases({ id });
+  }
+
+  @Get('unit/:id')
+  getActiveLeaseForUnit(@Param('id') id: string) {
+    return this.leaseService.getActiveUnitLease({ id });
+  }
+
   @Get()
   findAll() {
     return this.leaseService.findAll();

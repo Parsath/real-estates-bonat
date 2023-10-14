@@ -5,7 +5,10 @@ import { LeaseUpdateDto } from './dto/update.dto';
 import { Lease } from 'src/common/models/lease.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { LessThanOrEqual, Repository } from 'typeorm';
-import { throwNotFoundPopupValidationError } from 'src/common/utils/errors.utils';
+import {
+  throwNotFoundPopupValidationError,
+  throwPopupValidationError,
+} from 'src/common/utils/errors.utils';
 import { TenantService } from '../tenant/tenant.service';
 import { UnitService } from '../unit/unit.service';
 import { LeaseTypeEnum } from 'src/common/constants/lease-type.enum';
@@ -55,6 +58,26 @@ export class LeaseService {
     return await this.repository.find({
       relations: { unit: true, tenant: true },
     });
+  }
+
+  public async findTenantLeases({ id }: FindOneParam) {
+    try {
+      return await this.repository.findOneOrFail({
+        where: { tenant: { id } },
+      });
+    } catch {
+      throwPopupValidationError({ message: 'No leases found for this tenant' });
+    }
+  }
+
+  public async getActiveUnitLease({ id }: FindOneParam) {
+    try {
+      return await this.repository.findOneOrFail({
+        where: { unit: { id } },
+      });
+    } catch {
+      throwPopupValidationError({ message: 'No leases found for this unit' });
+    }
   }
 
   public async findOne({ id }: FindOneParam) {
