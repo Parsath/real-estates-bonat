@@ -37,10 +37,10 @@ describe('UnitController', () => {
           pricePerSquareMeter: BigInt(1000),
           numberOfRooms: 3,
           isAvailable: true,
-          property: {}, // Add property object
-          leases: [], // Add leases array
-          createdAt: new Date(), // Add createdAt date
-          updatedAt: new Date(), // Add updatedAt date
+          property: {},
+          leases: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           id: 'unit2',
@@ -48,10 +48,10 @@ describe('UnitController', () => {
           pricePerSquareMeter: BigInt(1500),
           numberOfRooms: 4,
           isAvailable: true,
-          property: {}, // Add property object
-          leases: [], // Add leases array
-          createdAt: new Date(), // Add createdAt date
-          updatedAt: new Date(), // Add updatedAt date
+          property: {},
+          leases: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
 
@@ -71,10 +71,10 @@ describe('UnitController', () => {
         pricePerSquareMeter: BigInt(1000),
         numberOfRooms: 3,
         isAvailable: true,
-        property: {}, // Add property object
-        leases: [], // Add leases array
-        createdAt: new Date(), // Add createdAt date
-        updatedAt: new Date(), // Add updatedAt date
+        property: {},
+        leases: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
       };
 
       jest.spyOn(unitService, 'findOne').mockResolvedValue(mockUnit as any);
@@ -88,7 +88,7 @@ describe('UnitController', () => {
     it('should update a unit', async () => {
       const unitId = 'test-unit-id';
       const updateUnitDto = {
-        type: PropertyTypeEnum.HOUSE, // Provide the correct PropertyTypeEnum value
+        type: PropertyTypeEnum.HOUSE,
         pricePerSquareMeter: 1500,
         numberOfRooms: 4,
         isAvailable: true,

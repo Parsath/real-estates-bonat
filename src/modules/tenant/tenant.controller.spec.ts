@@ -18,7 +18,7 @@ describe('TenantController', () => {
       providers: [
         TenantService,
         {
-          provide: getRepositoryToken(Tenant), // Import your Tenant entity and use the TypeORM repository token
+          provide: getRepositoryToken(Tenant),
           useClass: Repository,
         },
       ],
@@ -79,11 +79,11 @@ describe('TenantController', () => {
 
   describe('update', () => {
     it('should update a tenant and return HttpStatus.OK', async () => {
-      const tenantId = 'sample-tenant-id'; // Replace with a valid tenant ID
+      const tenantId = 'sample-tenant-id';
       const updateDto: TenantUpdateDto = {
         email: 'test@exmple.com',
         firstName: 'Jane',
-      }; // Replace with the update data
+      };
       jest.spyOn(service, 'update').mockResolvedValue(HttpStatus.OK);
 
       const result = await controller.update(tenantId, updateDto);
@@ -94,7 +94,7 @@ describe('TenantController', () => {
 
   describe('remove', () => {
     it('should remove a tenant and return HttpStatus.NO_CONTENT', async () => {
-      const tenantId = 'sample-tenant-id'; // Replace with a valid tenant ID
+      const tenantId = 'sample-tenant-id';
       jest.spyOn(service, 'remove').mockResolvedValue(HttpStatus.NO_CONTENT);
 
       const result = await controller.remove(tenantId);

@@ -22,12 +22,12 @@ describe('PropertyController', () => {
       providers: [
         PropertyService,
         {
-          provide: getRepositoryToken(Property), // Make sure to use the correct repository token
+          provide: getRepositoryToken(Property),
           useClass: Repository,
         },
         UnitService,
         {
-          provide: getRepositoryToken(Unit), // Make sure to use the correct repository token
+          provide: getRepositoryToken(Unit),
           useClass: Repository,
         },
       ],
@@ -115,7 +115,7 @@ describe('PropertyController', () => {
       const mockProperty = new Property({
         id: propertyId,
         location: 'Test Location',
-        units: [], // You can add units here if needed
+        units: [],
         createdAt: new Date(),
         updatedAt: new Date(),
       });

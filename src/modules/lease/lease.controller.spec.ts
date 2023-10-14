@@ -26,12 +26,12 @@ describe('LeaseController', () => {
         },
         UnitService,
         {
-          provide: getRepositoryToken(Unit), // Make sure to use the correct repository token
+          provide: getRepositoryToken(Unit),
           useClass: Repository,
         },
         TenantService,
         {
-          provide: getRepositoryToken(Tenant), // Make sure to use the correct repository token
+          provide: getRepositoryToken(Tenant),
           useClass: Repository,
         },
       ],
@@ -72,7 +72,10 @@ describe('LeaseController', () => {
     it('should update a lease', async () => {
       const leaseId = 'test-lease-id';
       const updateLeaseDto = {
-        /* mock update lease data */
+        unitId: 'test-unit-id',
+        tenantId: 'test-tenant-id',
+        startDate: '10-12-2023',
+        endDate: '12-12-2023',
       };
 
       const mockUpdatedStatus = HttpStatus.OK;
@@ -96,6 +99,4 @@ describe('LeaseController', () => {
       expect(result).toBe(mockRemoveStatus);
     });
   });
-
-  // Implement the other test cases as needed
 });
